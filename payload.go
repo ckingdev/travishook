@@ -62,7 +62,8 @@ type Build struct {
 }
 
 func makePayload(raw []byte) (*Payload, error) {
-	if len(raw) <= len("payload={}") || raw[0:len("payload={")] != "payload={" {
+	if len(raw) <= len("payload={}") || string(raw[0:len("payload={")]) != "payload={" {
+		fmt.Printf("%s\n", raw)
 		return nil, fmt.Errorf("Invalid payload format.")
 	}
 	raw = raw[len("payload="):]
