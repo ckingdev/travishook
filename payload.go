@@ -2,6 +2,7 @@ package travishook
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 type Payload struct {
@@ -61,6 +62,10 @@ type Build struct {
 }
 
 func makePayload(raw []byte) (*Payload, error) {
+	if len(raw) <= len("payload={}") || raw[0:len("payload={")] != "payload={" {
+		return nil, fmt.Errorf("Invalid payload format.")
+	}
+	raw = raw[len("payload="):]
 	var p Payload
 	if err := json.Unmarshal(raw, &p); err != nil {
 		return nil, err
