@@ -7,7 +7,7 @@ import (
 )
 
 type Payload struct {
-	ID             string     `json:"id"`
+	ID             int     `json:"id"`
 	Number         string     `json:"number"`
 	Status         int        `json:"status"`
 	StartedAt      int        `json:"started_at"`
