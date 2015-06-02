@@ -37,7 +37,7 @@ type Repository struct {
 }
 
 type Config struct {
-	Notifications map[string][]string `json:"notifications"`
+	Notifications map[string]string `json:"notifications"`
 }
 
 type Build struct {
