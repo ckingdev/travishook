@@ -3,6 +3,7 @@ package travishook
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 )
 
 type Payload struct {
@@ -62,13 +63,17 @@ type Build struct {
 }
 
 func makePayload(raw []byte) (*Payload, error) {
-	if len(raw) <= len("payload={}") || string(raw[0:len("payload={")]) != "payload={" {
-		fmt.Printf("%s\n", raw)
+	unescaped, err := url.QueryUnescape(string(raw))
+	if err != nil {
+		return nil, err
+	}
+	if len(unescaped) <= len("payload={}") || string(unescaped[0:len("payload={")]) != "payload={" {
+		fmt.Printf("%s\n", unescaped)
 		return nil, fmt.Errorf("Invalid payload format.")
 	}
-	raw = raw[len("payload="):]
+	unescaped = unescaped[len("payload="):]
 	var p Payload
-	if err := json.Unmarshal(raw, &p); err != nil {
+	if err := json.Unmarshal([]byte(unescaped), &p); err != nil {
 		return nil, err
 	}
 	return &p, nil
