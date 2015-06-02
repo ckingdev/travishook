@@ -10,8 +10,8 @@ type Payload struct {
 	ID             int     `json:"id"`
 	Number         string     `json:"number"`
 	Status         int        `json:"status"`
-	StartedAt      int        `json:"started_at"`
-	FinishedAt     int        `json:"finished_at"`
+	StartedAt      string        `json:"started_at"`
+	FinishedAt     string        `json:"finished_at"`
 	StatusMessage  string     `json:"status_message"`
 	Commit         string     `json:"commit"`
 	Branch         string     `json:"branch"`
@@ -45,8 +45,8 @@ type Build struct {
 	RepositoryID   int    `json:"repository_id"`
 	Number         string `json:"number"`
 	State          string `json:"state"`
-	StartedAt      int    `json:"started_at"`
-	FinishedAt     int    `json:"finished_at"`
+	StartedAt      string    `json:"started_at"`
+	FinishedAt     string    `json:"finished_at"`
 	Config         Config `json:"config"`
 	Status         int    `json:"status"`
 	Log            string `json:"log"`
