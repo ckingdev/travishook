@@ -7,11 +7,11 @@ import (
 )
 
 type Payload struct {
-	ID             int     `json:"id"`
+	ID             int        `json:"id"`
 	Number         string     `json:"number"`
 	Status         int        `json:"status"`
-	StartedAt      string        `json:"started_at"`
-	FinishedAt     string        `json:"finished_at"`
+	StartedAt      string     `json:"started_at"`
+	FinishedAt     string     `json:"finished_at"`
 	StatusMessage  string     `json:"status_message"`
 	Commit         string     `json:"commit"`
 	Branch         string     `json:"branch"`
@@ -37,7 +37,7 @@ type Repository struct {
 }
 
 type Config struct {
-	Notifications map[string]string `json:"notifications"`
+	Notifications map[string]interface{} `json:"notifications"`
 }
 
 type Build struct {
@@ -45,8 +45,8 @@ type Build struct {
 	RepositoryID   int    `json:"repository_id"`
 	Number         string `json:"number"`
 	State          string `json:"state"`
-	StartedAt      string    `json:"started_at"`
-	FinishedAt     string    `json:"finished_at"`
+	StartedAt      string `json:"started_at"`
+	FinishedAt     string `json:"finished_at"`
 	Config         Config `json:"config"`
 	Status         int    `json:"status"`
 	Log            string `json:"log"`
